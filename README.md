@@ -1,2 +1,2 @@
 # reactnd-readable
-Udacity React Nanodegree: Second Exam - React Redux 
+Udacity React Nanodegree: Second Exam - React Redux
