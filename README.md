@@ -9,3 +9,5 @@ Udacity React Nanodegree: Second Exam - React Redux
 ### start api server
 1) cd api-server
 2) node server
+
+Information regarding the api server usage can be found at api-server/README.md
