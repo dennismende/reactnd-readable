@@ -3,7 +3,7 @@ import {
   Item,
   Label,
 } from 'semantic-ui-react';
-import noImage from '../images/no-image.png'
+import noImage from '../images/no-image.png';
 import PostNonEditable from './PostNonEditable';
 import PostEditable from './PostEditable';
 
