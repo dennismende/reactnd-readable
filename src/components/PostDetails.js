@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import {
+  Comment,
+  Header,
   Item,
-  Label,
 } from 'semantic-ui-react';
 import Post from './Post';
+import CommentList from './CommentList';
+import noImage from '../images/no-image.png';
 
 class PostDetails extends Component {
   state = {
@@ -15,11 +18,13 @@ class PostDetails extends Component {
     const { inEditMode } = this.state;
 
     return (
-      <Item.Group>
-        <Post />
-      </Item.Group>
+      <div>
+        <Item.Group>
+          <Post />
+        </Item.Group>
 
-
+        <CommentList />
+      </div>
     );
   }
 }
