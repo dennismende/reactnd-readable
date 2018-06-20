@@ -6,6 +6,7 @@ import {
   Item,
   Statistic,
 } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 class PostNonEditable extends Component {
   render() {
@@ -16,7 +17,9 @@ class PostNonEditable extends Component {
           <Grid>
             <Grid.Row>
               <Grid.Column width={14}>
-                <Item.Header as='a'>title</Item.Header>
+                <Link to="/1/2">
+                  <Item.Header as='a'>title</Item.Header>
+                </Link>
               </Grid.Column>
               <Grid.Column width={2} textAlign='right'>
                 <Dropdown icon='ellipsis horizontal'>
