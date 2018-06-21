@@ -5,10 +5,15 @@ import {
 import noImage from '../images/no-image.png';
 
 class CommentNonEditable extends Component {
-  render() {
+  onChangeToEditMode = () => {
+    const { changeMode } = this.props;
 
+    changeMode(true);
+  }
+
+  render() {
     return (
-      <Comment>
+      <React.Fragment>
         <Comment.Avatar src={noImage} />
         <Comment.Content>
           <Comment.Author as='a'>Matt</Comment.Author>
@@ -17,25 +22,11 @@ class CommentNonEditable extends Component {
           </Comment.Metadata>
           <Comment.Text>How artistic!</Comment.Text>
           <Comment.Actions>
-            <Comment.Action>Reply</Comment.Action>
+            <Comment.Action onClick={this.onChangeToEditMode}>Edit</Comment.Action>
+            <Comment.Action>Delete</Comment.Action>
           </Comment.Actions>
         </Comment.Content>
-        <Comment.Group>
-          <Comment>
-            <Comment.Avatar src={noImage} />
-            <Comment.Content>
-              <Comment.Author as='a'>Jenny Hess</Comment.Author>
-              <Comment.Metadata>
-                <div>Just now</div>
-              </Comment.Metadata>
-              <Comment.Text>Elliot you are always so right :)</Comment.Text>
-              <Comment.Actions>
-                <Comment.Action>Reply</Comment.Action>
-              </Comment.Actions>
-            </Comment.Content>
-          </Comment>
-        </Comment.Group>
-      </Comment>
+      </React.Fragment>
     );
   }
 }

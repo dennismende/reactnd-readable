@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Item,
-  Label,
+  Comment as SemanticComment,
 } from 'semantic-ui-react';
 import CommentNonEditable from './CommentNonEditable';
 import CommentEditable from './CommentEditable';
@@ -11,18 +10,25 @@ class Comment extends Component {
     inEditMode: false
   }
 
+  changeMode = (inEditMode) => {
+    this.setState(() => ({
+      inEditMode,
+    }));
+  }
+
   render() {
 
     const { inEditMode } = this.state;
 
     return (
-      <React.Fragment>
+      <SemanticComment>
+
         {inEditMode ? (
           <CommentEditable />
         ) : (
-          <CommentNonEditable />
+          <CommentNonEditable changeMode={this.changeMode} />
         )}
-      </React.Fragment>
+      </SemanticComment>
     );
   }
 }

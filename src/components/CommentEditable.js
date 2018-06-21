@@ -8,7 +8,7 @@ class CommentEditable extends Component {
   render() {
 
     return (
-      <Comment>
+      <React.Fragment>
         <Comment.Avatar src={noImage} />
         <Comment.Content>
           <Comment.Author as='a'>Matt</Comment.Author>
@@ -17,25 +17,10 @@ class CommentEditable extends Component {
           </Comment.Metadata>
           <Comment.Text>How artistic!</Comment.Text>
           <Comment.Actions>
-            <Comment.Action>Reply</Comment.Action>
+            <Comment.Action>Save</Comment.Action>
           </Comment.Actions>
         </Comment.Content>
-        <Comment.Group>
-          <Comment>
-            <Comment.Avatar src={noImage} />
-            <Comment.Content>
-              <Comment.Author as='a'>Jenny Hess</Comment.Author>
-              <Comment.Metadata>
-                <div>Just now</div>
-              </Comment.Metadata>
-              <Comment.Text>Elliot you are always so right :)</Comment.Text>
-              <Comment.Actions>
-                <Comment.Action>Reply</Comment.Action>
-              </Comment.Actions>
-            </Comment.Content>
-          </Comment>
-        </Comment.Group>
-      </Comment>
+      </React.Fragment>
     );
   }
 }
