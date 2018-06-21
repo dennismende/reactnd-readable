@@ -3,23 +3,15 @@ import { Route } from 'react-router-dom';
 import {
   Grid,
   Header,
-  Menu,
 } from 'semantic-ui-react';
 import './App.css';
 import PostList from './components/PostList';
 import PostDetails from './components/PostDetails';
-import { Link } from 'react-router-dom';
+import CategoryMenu from './components/CategoryMenu';
 
 class App extends Component {
-  state = {
-    activeItem: 'All Posts',
-  }
-
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state;
-
     return (
       <div className="App">
         <Header as='h1' textAlign='center'>Reactnd Readable</Header>
@@ -27,27 +19,7 @@ class App extends Component {
         <Grid padded>
           <Grid.Row>
             <Grid.Column width={3}>
-              <Header as='h3' textAlign='center'>Category Overview</Header>
-
-              <Menu fluid vertical tabular>
-                <Menu.Item
-                  as={Link}
-                  to='/'
-                  name='All Posts'
-                  active={activeItem === 'All Posts'}
-                  onClick={this.handleItemClick}
-                />
-                <Menu.Item
-                  name='companies'
-                  active={activeItem === 'companies'}
-                  onClick={this.handleItemClick}
-                />
-                <Menu.Item
-                  name='links'
-                  active={activeItem === 'links'}
-                  onClick={this.handleItemClick}
-                />
-              </Menu>
+              <CategoryMenu />
             </Grid.Column>
             <Grid.Column>
             </Grid.Column>
