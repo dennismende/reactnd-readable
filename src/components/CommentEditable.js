@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {
-  Comment
+  Comment,
+  Form,
+  Input,
+  TextArea,
 } from 'semantic-ui-react';
 import noImage from '../images/no-image.png';
 
@@ -11,14 +14,13 @@ class CommentEditable extends Component {
       <React.Fragment>
         <Comment.Avatar src={noImage} />
         <Comment.Content>
-          <Comment.Author as='a'>Matt</Comment.Author>
-          <Comment.Metadata>
-            <div>Today at 5:42PM</div>
-          </Comment.Metadata>
-          <Comment.Text>How artistic!</Comment.Text>
-          <Comment.Actions>
-            <Comment.Action>Save</Comment.Action>
-          </Comment.Actions>
+          <Form>
+            <Comment.Author as='a'><Input placeholder='author' /></Comment.Author>
+            <Comment.Text><TextArea placeholder='comment body' /></Comment.Text>
+            <Comment.Actions>
+              <Comment.Action>Save</Comment.Action>
+            </Comment.Actions>
+          </Form>
         </Comment.Content>
       </React.Fragment>
     );
