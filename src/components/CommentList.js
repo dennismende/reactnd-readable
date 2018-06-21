@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import {
+  Button,
   Comment as SemanticComment,
-  Header
+  Container,
+  Header,
+  Icon,
 } from 'semantic-ui-react';
 import Comment from './Comment';
 
@@ -10,13 +13,21 @@ class CommentList extends Component {
   render() {
 
     return (
-      <SemanticComment.Group>
-        <Header as='h3' dividing>
-          Comments
-        </Header>
+      <React.Fragment>
+        <SemanticComment.Group>
+          <Header as='h3' dividing>
+            Comments
+          </Header>
 
-        <Comment />
-      </SemanticComment.Group>
+          <Comment />
+
+          <Container textAlign='center'>
+            <Button circular icon primary>
+              <Icon name='add' />
+            </Button>
+          </Container>
+        </SemanticComment.Group>
+      </React.Fragment>
     );
   }
 }
