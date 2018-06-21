@@ -39,7 +39,6 @@ class PostEditable extends Component {
               <Grid.Row className='post_extra_grid' verticalAlign='middle'>
                 <Grid.Column textAlign='right'>
                   <Button primary>save changes</Button>
-                  <Button secondary>discard changes</Button>
                 </Grid.Column>
               </Grid.Row>
             </Grid>

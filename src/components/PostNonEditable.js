@@ -9,8 +9,14 @@ import {
 import { Link } from 'react-router-dom';
 
 class PostNonEditable extends Component {
-  render() {
 
+  onChangeToEditMode = () => {
+    const { changeMode } = this.props;
+
+    changeMode(true);
+  }
+
+  render() {
     return (
       <React.Fragment>
         <Item.Content>
@@ -24,7 +30,7 @@ class PostNonEditable extends Component {
               <Grid.Column width={2} textAlign='right'>
                 <Dropdown icon='ellipsis horizontal'>
                   <Dropdown.Menu>
-                    <Dropdown.Item>edit post</Dropdown.Item>
+                    <Dropdown.Item onClick={this.onChangeToEditMode}>edit post</Dropdown.Item>
                     <Dropdown.Item>delete post</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>

@@ -12,6 +12,12 @@ class Post extends Component {
     inEditMode: false
   }
 
+  changeMode = (inEditMode) => {
+    this.setState(() => ({
+      inEditMode,
+    }));
+  }
+
   render() {
 
     const { inEditMode } = this.state;
@@ -28,7 +34,7 @@ class Post extends Component {
         {inEditMode ? (
           <PostEditable />
         ) : (
-          <PostNonEditable />
+          <PostNonEditable changeMode={this.changeMode} />
         )}
       </Item>
     );
