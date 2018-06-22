@@ -24,7 +24,7 @@ class PostNonEditable extends Component {
             <Grid.Row>
               <Grid.Column width={14}>
                 <Link to="/1/2">
-                  <Item.Header as='a'>title</Item.Header>
+                  <Item.Header>title</Item.Header>
                 </Link>
               </Grid.Column>
               <Grid.Column width={2} textAlign='right'>

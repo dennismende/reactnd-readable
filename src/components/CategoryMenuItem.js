@@ -13,14 +13,14 @@ class CategoryMenuItem extends Component {
   }
 
   render() {
-    const {activeItem} = this.props;
+    const { activeItem, name } = this.props;
 
     return (
       <Menu.Item
         as={Link}
         to='/'
-        name='All Posts'
-        active={activeItem === 'All Posts'}
+        name={name}
+        active={activeItem === name}
         onClick={this.handleItemClick}
       />
     );
