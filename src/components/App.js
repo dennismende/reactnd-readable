@@ -4,10 +4,9 @@ import {
   Grid,
   Header,
 } from 'semantic-ui-react';
-import './App.css';
-import PostList from './components/PostList';
-import PostDetails from './components/PostDetails';
-import CategoryMenu from './components/CategoryMenu';
+import PostList from './PostList';
+import PostDetails from './PostDetails';
+import CategoryMenu from './CategoryMenu';
 
 class App extends Component {
 
