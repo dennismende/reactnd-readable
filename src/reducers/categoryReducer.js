@@ -1,4 +1,4 @@
-import { FETCH_CATEGORIES } from '../actions/category';
+import { FETCH_CATEGORIES } from '../actions/categoryActions';
 
 const initialState = {
   categories: [],
