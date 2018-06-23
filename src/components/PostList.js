@@ -6,6 +6,7 @@ import {
   Item,
   Menu,
 } from 'semantic-ui-react';
+import orderBy from 'lodash/orderBy';
 
 class PostList extends Component {
   state = {
@@ -14,10 +15,19 @@ class PostList extends Component {
 
   handleSortingClick = (e, { name }) => this.setState({ selectedSortingMethod: name })
 
+  getSortedPostsBySortingMethod = (posts, selectedSortingMethod) => {
+    if (selectedSortingMethod === 'byDate') {
+      return orderBy(posts, ['timestamp'], ['desc']);
+    } else {
+      return orderBy(posts, ['voteScore'], ['desc']);
+    }
+  }
+
   render() {
 
     const { selectedSortingMethod } = this.state;
     const { posts } = this.props;
+    let sortedPosts = this.getSortedPostsBySortingMethod(posts, selectedSortingMethod);
 
     return (
       <div>
@@ -47,7 +57,7 @@ class PostList extends Component {
         </Menu>
 
         <Item.Group>
-          {posts.map(post => (
+          {sortedPosts.map(post => (
             <Post
               key={post.id}
               post={post}
