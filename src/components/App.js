@@ -38,13 +38,13 @@ class App extends Component {
             </Grid.Column>
             <Grid.Column width={11}>
               <Route
-                exact path="/"
+                exact path='/:filter?'
                 render={props => (
                   <PostList posts={posts} {...props} />
                 )}
               />
               <Route
-                path="/:category/:post_id"
+                path=':category/:post_id'
                 component={PostDetails}
               />
             </Grid.Column>

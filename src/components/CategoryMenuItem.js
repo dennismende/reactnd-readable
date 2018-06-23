@@ -3,22 +3,38 @@ import {
   Menu,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import {
+  fetchPostsOfSelectedCategory as fetchPostsOfSelectedCategoryAction,
+  fetchPosts as fetchPostsAction
+} from '../actions/postActions';
 
 class CategoryMenuItem extends Component {
 
   handleItemClick = (event, { name }) => {
-    const { selectMenuItem } = this.props;
+    const { selectMenuItem, fetchPostsOfSelectedCategory, fetchPosts } = this.props;
+    const categoryPath = this.getCategoryPath(name);
 
     selectMenuItem(name);
+
+    if(categoryPath === '/') {
+      fetchPosts();
+    } else {
+      fetchPostsOfSelectedCategory(categoryPath);
+    }
   }
+
+  getCategoryPath = (categoryName) => categoryName === 'All Posts' ? '/' : `/${categoryName}`
 
   render() {
     const { activeItem, name } = this.props;
+    const categoryPath = this.getCategoryPath(name);
 
     return (
       <Menu.Item
         as={Link}
-        to='/'
+        to={categoryPath}
         name={name}
         active={activeItem === name}
         onClick={this.handleItemClick}
@@ -27,4 +43,14 @@ class CategoryMenuItem extends Component {
   }
 }
 
-export default CategoryMenuItem;
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchPostsOfSelectedCategory: categoryPath => dispatch(fetchPostsOfSelectedCategoryAction(categoryPath)),
+    fetchPosts: () => dispatch(fetchPostsAction()),
+  };
+}
+
+export default withRouter(connect(
+  null,
+  mapDispatchToProps
+)(CategoryMenuItem))
