@@ -7,6 +7,7 @@ import {
   Statistic,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 
 class PostNonEditable extends Component {
 
@@ -18,7 +19,6 @@ class PostNonEditable extends Component {
 
   render() {
     const { post } = this.props;
-
     const detailRoute = `/${post.category}/${post.id}`;
 
     return (
@@ -42,7 +42,7 @@ class PostNonEditable extends Component {
             </Grid.Row>
           </Grid>
 
-          <Item.Meta>{post.author} at {post.timestamp}</Item.Meta>
+          <Item.Meta>{post.author} at <Moment format='DD-MM-YYYY HH:mm'>{post.timestamp}</Moment></Item.Meta>
           <Item.Description>
             {post.body}
           </Item.Description>
