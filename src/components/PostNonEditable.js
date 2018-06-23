@@ -17,6 +17,8 @@ class PostNonEditable extends Component {
   }
 
   render() {
+    const { post } = this.props;
+
     return (
       <React.Fragment>
         <Item.Content>
@@ -24,7 +26,7 @@ class PostNonEditable extends Component {
             <Grid.Row>
               <Grid.Column width={14}>
                 <Link to="/1/2">
-                  <Item.Header>title</Item.Header>
+                  <Item.Header>{post.title}</Item.Header>
                 </Link>
               </Grid.Column>
               <Grid.Column width={2} textAlign='right'>
@@ -38,9 +40,9 @@ class PostNonEditable extends Component {
             </Grid.Row>
           </Grid>
 
-          <Item.Meta>author at timestamp</Item.Meta>
+          <Item.Meta>{post.author} at {post.timestamp}</Item.Meta>
           <Item.Description>
-            post body
+            {post.body}
           </Item.Description>
           <Item.Extra>
 
@@ -52,7 +54,7 @@ class PostNonEditable extends Component {
                   <Statistic size='tiny'>
                     <Statistic.Value>
                       <Icon name='heart outline' size='small' />
-                      5
+                      {post.voteScore}
                     </Statistic.Value>
                   </Statistic>
                   <span>
@@ -64,7 +66,7 @@ class PostNonEditable extends Component {
                   <Statistic size='tiny'>
                     <Statistic.Value>
                       <Icon name='comments outline' size='small' />
-                      5
+                      {post.commentCount}
                     </Statistic.Value>
                   </Statistic>
                 </Grid.Column>

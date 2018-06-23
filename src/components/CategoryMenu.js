@@ -4,7 +4,8 @@ import {
   Menu,
 } from 'semantic-ui-react';
 import CategoryMenuItem from './CategoryMenuItem';
-import { fetchCategories as fetchCategoriesAction } from '../actions/category';
+import { fetchCategories as fetchCategoriesAction } from '../actions/categoryActions';
+import { fetchPosts as fetchPostsAction } from '../actions/postActions';
 import { connect } from 'react-redux';
 
 class CategoryMenu extends Component {
@@ -14,9 +15,10 @@ class CategoryMenu extends Component {
   }
 
   componentDidMount() {
-    const { fetchCategories } = this.props;
+    const { fetchCategories, fetchPosts } = this.props;
 
     fetchCategories();
+    fetchPosts();
   }
 
   selectMenuItem = (selectedItem) => this.setState({ activeItem: selectedItem })
@@ -49,15 +51,16 @@ class CategoryMenu extends Component {
   }
 }
 
-function mapStateToProps ({ categoryReducer }) {
+function mapStateToProps ({ categoryReducer: { categories } }) {
   return {
-    categories: categoryReducer.categories,
+    categories,
   };
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     fetchCategories: () => dispatch(fetchCategoriesAction()),
+    fetchPosts: () => dispatch(fetchPostsAction()),
   };
 }
 

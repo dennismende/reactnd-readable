@@ -19,22 +19,27 @@ class Post extends Component {
   }
 
   render() {
-
     const { inEditMode } = this.state;
+    const { post } = this.props;
 
     return (
       <Item className='post'>
 
         <Label color='blue' ribbon>
-          category
+          {post.category}
         </Label>
 
         <Item.Image size='tiny' src={noImage} />
 
         {inEditMode ? (
-          <PostEditable />
+          <PostEditable
+            post={post}
+          />
         ) : (
-          <PostNonEditable changeMode={this.changeMode} />
+          <PostNonEditable
+            post={post}
+            changeMode={this.changeMode}
+          />
         )}
       </Item>
     );

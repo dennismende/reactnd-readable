@@ -6,6 +6,7 @@ import {
   Item,
   Menu,
 } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
 class PostList extends Component {
   state = {
@@ -17,6 +18,7 @@ class PostList extends Component {
   render() {
 
     const { selectedSortingMethod } = this.state;
+    const { posts } = this.props;
 
     return (
       <div>
@@ -46,12 +48,25 @@ class PostList extends Component {
         </Menu>
 
         <Item.Group>
-          <Post />
-          <Post />
+          {posts.map(post => (
+            <Post
+              key={post.id}
+              post={post}
+            />
+          ))}
         </Item.Group>
       </div>
     );
   }
 }
 
-export default PostList;
+function mapStateToProps ({ postReducer: { posts } }) {
+  return {
+    posts,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null,
+)(PostList)
