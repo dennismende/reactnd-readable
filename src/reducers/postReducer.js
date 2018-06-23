@@ -16,13 +16,13 @@ const postReducer = (state = initialState, action) => {
     case FETCH_POSTS :
       return {
         ...state,
-        posts
+        posts,
       }
 
     case FETCH_POSTS_OF_SELECTED_CATEGORY:
       return {
         ...state,
-        posts
+        posts,
       }
 
     default :
