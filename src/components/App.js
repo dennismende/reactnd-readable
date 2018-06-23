@@ -44,7 +44,7 @@ class App extends Component {
                 )}
               />
               <Route
-                path=':category/:post_id'
+                path='/:category/:post_id'
                 component={PostDetails}
               />
             </Grid.Column>
