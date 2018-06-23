@@ -11,6 +11,7 @@ import {
 
 class PostEditable extends Component {
   render() {
+    const { post } = this.props;
 
     return (
       <React.Fragment>
@@ -19,7 +20,7 @@ class PostEditable extends Component {
             <Grid>
               <Grid.Row>
                 <Grid.Column width={14}>
-                  <Item.Header as='a'><Input placeholder='title' /></Item.Header>
+                  <Item.Header as='a'><Input placeholder='title' value={post.title} /></Item.Header>
                 </Grid.Column>
                 <Grid.Column width={2} textAlign='right'>
                   <Dropdown icon='ellipsis horizontal'>
@@ -31,9 +32,8 @@ class PostEditable extends Component {
               </Grid.Row>
             </Grid>
 
-            <Item.Meta><Input placeholder='author at timestamp' /></Item.Meta>
             <Item.Description>
-              <TextArea placeholder='post body' />
+              <TextArea placeholder='post body' value={post.body} />
             </Item.Description>
             <Item.Extra>
 

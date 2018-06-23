@@ -6,7 +6,6 @@ import {
   Item,
   Menu,
 } from 'semantic-ui-react';
-import { connect } from 'react-redux';
 
 class PostList extends Component {
   state = {
@@ -60,13 +59,4 @@ class PostList extends Component {
   }
 }
 
-function mapStateToProps ({ postReducer: { posts } }) {
-  return {
-    posts,
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  null,
-)(PostList)
+export default PostList;

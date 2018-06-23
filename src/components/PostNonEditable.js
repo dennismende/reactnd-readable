@@ -19,13 +19,15 @@ class PostNonEditable extends Component {
   render() {
     const { post } = this.props;
 
+    const detailRoute = `/${post.category}/${post.id}`;
+
     return (
       <React.Fragment>
         <Item.Content>
           <Grid>
             <Grid.Row>
               <Grid.Column width={14}>
-                <Link to="/1/2">
+                <Link to={detailRoute}>
                   <Item.Header>{post.title}</Item.Header>
                 </Link>
               </Grid.Column>
