@@ -28,6 +28,11 @@ export const getPostsOfSelectedCategory = (selectedCategory) =>
     .then(res => res.json())
     .then(data => data);
 
+export const getPost = (postId) =>
+  fetch(`${api}/posts/${postId}`, { headers })
+    .then(res => res.json())
+    .then(data => data);
+
 // Comments
 export const getCommentsOfPost = (postId) =>
   fetch(`${api}/posts/${postId}/comments`, { headers })

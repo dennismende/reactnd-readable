@@ -1,7 +1,9 @@
 import {
   FETCH_POSTS,
   FETCH_POSTS_OF_SELECTED_CATEGORY,
+  FETCH_POST,
 } from '../actions/postActions';
+import concat from 'lodash/concat';
 
 const initialState = {
   posts: [],
@@ -9,7 +11,7 @@ const initialState = {
 
 const postReducer = (state = initialState, action) => {
 
-  const { posts } = action;
+  const { posts, post } = action;
 
   switch (action.type) {
 
@@ -23,6 +25,12 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         posts,
+      }
+
+    case FETCH_POST:
+      return {
+        ...state,
+        posts: concat(state.posts.filter(currentPost => currentPost.id !== post.id), post),
       }
 
     default :
