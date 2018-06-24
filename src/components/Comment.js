@@ -19,14 +19,20 @@ class Comment extends Component {
   render() {
 
     const { inEditMode } = this.state;
+    const { comment } = this.props;
 
     return (
       <SemanticComment>
 
         {inEditMode ? (
-          <CommentEditable />
+          <CommentEditable
+            comment={comment}
+          />
         ) : (
-          <CommentNonEditable changeMode={this.changeMode} />
+          <CommentNonEditable
+            changeMode={this.changeMode}
+            comment={comment}
+          />
         )}
       </SemanticComment>
     );

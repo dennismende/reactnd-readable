@@ -11,6 +11,7 @@ import Comment from './Comment';
 class CommentList extends Component {
 
   render() {
+    const { comments } = this.props;
 
     return (
       <React.Fragment>
@@ -19,7 +20,12 @@ class CommentList extends Component {
             Comments
           </Header>
 
-          <Comment />
+          {comments.map(comment => (
+            <Comment
+              key={comment.id}
+              comment={comment}
+            />
+          ))}
 
           <Container textAlign='center'>
             <Button circular icon primary>

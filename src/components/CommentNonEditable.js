@@ -5,6 +5,7 @@ import {
   Statistic,
 } from 'semantic-ui-react';
 import noImage from '../images/no-image.png';
+import Moment from 'react-moment';
 
 class CommentNonEditable extends Component {
   onChangeToEditMode = () => {
@@ -14,21 +15,23 @@ class CommentNonEditable extends Component {
   }
 
   render() {
+    const { comment } = this.props;
+
     return (
       <React.Fragment>
         <Comment.Avatar src={noImage} />
         <Comment.Content>
-          <Comment.Author as='a'>Matt</Comment.Author>
+          <Comment.Author as='a'>{comment.author}</Comment.Author>
           <Comment.Metadata>
-            <div>Today at 5:42PM</div>
+            <div><Moment format='DD-MM-YYYY HH:mm'>{comment.timestamp}</Moment></div>
           </Comment.Metadata>
-          <Comment.Text>How artistic!</Comment.Text>
+          <Comment.Text>{comment.body}</Comment.Text>
           <Comment.Actions>
             <Comment.Action>
               <Statistic size='mini'>
                 <Statistic.Value>
                   <Icon name='heart outline' size='small' />
-                  5
+                  {comment.voteScore}
                 </Statistic.Value>
               </Statistic>
               <span>
