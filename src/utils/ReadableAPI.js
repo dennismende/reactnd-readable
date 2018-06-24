@@ -17,7 +17,6 @@ export const getAllCategories = () =>
     .then(res => res.json())
     .then(data => data.categories);
 
-
 // Posts
 export const getAllPosts = () =>
   fetch(`${api}/posts`, { headers })
@@ -29,7 +28,20 @@ export const getPostsOfSelectedCategory = (selectedCategory) =>
     .then(res => res.json())
     .then(data => data);
 
+// Comments
 export const getCommentsOfPost = (postId) =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
+    .then(res => res.json())
+    .then(data => data);
+
+export const addCommentToPost = (comment) =>
+  fetch(`${api}/comments`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ comment })
+  })
     .then(res => res.json())
     .then(data => data);

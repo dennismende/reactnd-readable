@@ -9,8 +9,18 @@ import {
 import Comment from './Comment';
 
 class CommentList extends Component {
+  state = {
+    inAddingMode: false,
+  }
+
+  showAddNewComment = (inAddingMode) => {
+    this.setState(() => ({
+      inAddingMode,
+    }));
+  }
 
   render() {
+    const { inAddingMode } = this.state;
     const { comments } = this.props;
 
     return (
@@ -27,11 +37,19 @@ class CommentList extends Component {
             />
           ))}
 
-          <Container textAlign='center'>
-            <Button circular icon primary>
-              <Icon name='add' />
-            </Button>
-          </Container>
+          {inAddingMode && (
+            <Comment
+              inEditMode={true}
+            />
+          )}
+
+          {!inAddingMode && (
+            <Container textAlign='center'>
+              <Button circular icon primary onClick={this.showAddNewComment}>
+                <Icon name='add' />
+              </Button>
+            </Container>
+          )}
         </SemanticComment.Group>
       </React.Fragment>
     );

@@ -6,8 +6,14 @@ import CommentNonEditable from './CommentNonEditable';
 import CommentEditable from './CommentEditable';
 
 class Comment extends Component {
-  state = {
-    inEditMode: false
+  constructor(props) {
+    super(props);
+
+    const { inEditMode } = props;
+
+    this.state = {
+      inEditMode: inEditMode ? inEditMode : false,
+    };
   }
 
   changeMode = (inEditMode) => {
@@ -23,7 +29,6 @@ class Comment extends Component {
 
     return (
       <SemanticComment>
-
         {inEditMode ? (
           <CommentEditable
             comment={comment}
