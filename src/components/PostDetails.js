@@ -36,7 +36,7 @@ class PostDetails extends Component {
 }
 
 function mapStateToProps ({ postReducer: { posts }, commentReducer: { comments } }, ownProps) {
-  const { post_id } = ownProps.match.params
+  const { post_id } = ownProps.match.params;
 
   return {
     comments,
