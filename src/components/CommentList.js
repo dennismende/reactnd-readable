@@ -29,7 +29,7 @@ class CommentList extends Component {
             Comments
           </Header>
 
-          {orderBy(comments, ['timestamp'], ['desc']).map(comment => (
+          {orderBy(comments, ['timestamp'], ['asc']).map(comment => (
             <Comment
               key={comment.id}
               comment={comment}
