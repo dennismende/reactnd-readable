@@ -4,17 +4,21 @@ import {
   Grid,
   Icon,
   Item,
+  Label,
   Statistic,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
+import noImage from '../images/no-image.png';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { activateEditModeOfPost as activateEditModeOfPostAction } from '../actions/appActions';
 
 class PostNonEditable extends Component {
-
   onChangeToEditMode = () => {
-    const { changeMode } = this.props;
+    const { activateEditModeOfPost, post } = this.props;
 
-    changeMode(true);
+    activateEditModeOfPost(post.id);
   }
 
   render() {
@@ -22,7 +26,13 @@ class PostNonEditable extends Component {
     const detailRoute = `/${post.category}/${post.id}`;
 
     return (
-      <React.Fragment>
+      <Item className='post'>
+
+        <Label color='blue' ribbon>
+          {post.category}
+        </Label>
+
+        <Item.Image size='tiny' src={noImage} />
         <Item.Content>
           <Grid>
             <Grid.Row>
@@ -76,9 +86,18 @@ class PostNonEditable extends Component {
             </Grid>
           </Item.Extra>
         </Item.Content>
-      </React.Fragment>
+      </Item>
     );
   }
 }
 
-export default PostNonEditable;
+function mapDispatchToProps (dispatch) {
+  return {
+    activateEditModeOfPost: (post) => dispatch(activateEditModeOfPostAction(post)),
+  };
+}
+
+export default withRouter(connect(
+  null,
+  mapDispatchToProps,
+)(PostNonEditable))

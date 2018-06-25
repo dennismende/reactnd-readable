@@ -29,7 +29,7 @@ class CommentEditable extends Component {
         }
       };
     } else {
-      const newComment = this.createNewPost();
+      const newComment = this.createNewComment();
 
       this.state = {
         isNewComment: true,
@@ -38,7 +38,7 @@ class CommentEditable extends Component {
     }
   }
 
-  createNewPost = () => {
+  createNewComment = () => {
     const { match: { params: { post_id } } } = this.props;
 
     return {

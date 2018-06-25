@@ -1,7 +1,38 @@
+export const OPEN_NEW_POST_MENU = 'OPEN_NEW_POST_MENU';
+export const CLOSE_NEW_POST_MENU = 'CLOSE_NEW_POST_MENU';
+export const ACTIVATE_EDIT_MODE_OF_POST = 'ACTIVATE_EDIT_MODE_OF_POST';
+export const DEACTIVATE_EDIT_MODE_OF_POST = 'DEACTIVATE_EDIT_MODE_OF_POST';
 export const OPEN_NEW_COMMENT_MENU = 'OPEN_NEW_COMMENT_MENU';
 export const CLOSE_NEW_COMMENT_MENU = 'CLOSE_NEW_COMMENT_MENU';
 export const ACTIVATE_EDIT_MODE_OF_COMMENT = 'ACTIVATE_EDIT_MODE_OF_COMMENT';
 export const DEACTIVATE_EDIT_MODE_OF_COMMENT = 'DEACTIVATE_EDIT_MODE_OF_COMMENT';
+
+export const openNewPostMenu = () => {
+  return {
+    type: OPEN_NEW_POST_MENU,
+  };
+}
+
+export const closeNewPostMenu = () => {
+  return {
+    type: CLOSE_NEW_POST_MENU,
+  };
+}
+
+export const activateEditModeOfPost = (postId) => {
+  return {
+    type: ACTIVATE_EDIT_MODE_OF_POST,
+    postId,
+  };
+}
+
+
+export const deactivateEditModeOfPost = (postId) => {
+  return {
+    type: DEACTIVATE_EDIT_MODE_OF_POST,
+    postId,
+  };
+}
 
 export const openNewCommentMenu = () => {
   return {

@@ -7,6 +7,9 @@ import {
   Menu,
 } from 'semantic-ui-react';
 import orderBy from 'lodash/orderBy';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { openNewPostMenu as openNewPostMenuAction } from '../actions/appActions';
 
 class PostList extends Component {
   state = {
@@ -23,10 +26,15 @@ class PostList extends Component {
     }
   }
 
+  showAddNewPost = () => {
+    const { openNewPostMenu } = this.props;
+    openNewPostMenu();
+  }
+
   render() {
 
     const { selectedSortingMethod } = this.state;
-    const { posts } = this.props;
+    const { posts, isNewPostMenuOpen } = this.props;
     let sortedPosts = this.getSortedPostsBySortingMethod(posts, selectedSortingMethod);
 
     return (
@@ -46,8 +54,8 @@ class PostList extends Component {
 
           <Menu.Menu position='right'>
             <Menu.Item>
-              <Button primary animated='vertical'>
-                <Button.Content hidden>Add Post</Button.Content>
+              <Button primary animated='vertical' onClick={this.showAddNewPost}>
+                <Button.Content hidden >Add Post</Button.Content>
                 <Button.Content visible>
                   <Icon name='add' />
                 </Button.Content>
@@ -57,6 +65,12 @@ class PostList extends Component {
         </Menu>
 
         <Item.Group>
+          {isNewPostMenuOpen && (
+            <Post
+              isInEditMode={true}
+            />
+          )}
+
           {sortedPosts.map(post => (
             <Post
               key={post.id}
@@ -69,4 +83,19 @@ class PostList extends Component {
   }
 }
 
-export default PostList;
+function mapStateToProps ({ appReducer: { isNewPostMenuOpen } }) {
+  return {
+    isNewPostMenuOpen,
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    openNewPostMenu: () => dispatch(openNewPostMenuAction()),
+  };
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PostList))
