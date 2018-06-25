@@ -1,6 +1,7 @@
 import {
   closeNewPostMenu,
   deactivateEditModeOfPost,
+  finishInitialLoading,
 } from '../actions/appActions';
 import {
   FETCH_POSTS,
@@ -17,7 +18,8 @@ from './types';
 export const fetchPosts = () => {
   return (dispatch, getState, api) => {
     api.getAllPosts()
-      .then(posts => dispatch(fetchPostsSuccess(posts)));
+      .then(posts => dispatch(fetchPostsSuccess(posts)))
+      .then(() => dispatch(finishInitialLoading()));
   }
 }
 

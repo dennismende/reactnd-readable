@@ -7,8 +7,15 @@ import {
   CLOSE_NEW_COMMENT_MENU,
   ACTIVATE_EDIT_MODE_OF_COMMENT,
   DEACTIVATE_EDIT_MODE_OF_COMMENT,
+  FINISH_INITIAL_LOADING,
 }
 from './types';
+
+export const finishInitialLoading = () => {
+  return {
+    type: FINISH_INITIAL_LOADING,
+  };
+}
 
 export const openNewPostMenu = () => {
   return {

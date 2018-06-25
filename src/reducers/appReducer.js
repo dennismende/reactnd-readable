@@ -7,6 +7,7 @@ import {
   CLOSE_NEW_COMMENT_MENU,
   ACTIVATE_EDIT_MODE_OF_COMMENT,
   DEACTIVATE_EDIT_MODE_OF_COMMENT,
+  FINISH_INITIAL_LOADING,
 } from '../actions/types';
 import concat from 'lodash/concat';
 import without from 'lodash/without';
@@ -14,6 +15,7 @@ import without from 'lodash/without';
 const initialState = {
   isNewCommentMenuOpen: false,
   isNewPostMenuOpen: false,
+  isInitialLoadingDone: false,
   postEditStates: [],
   commentEditStates: [],
 };
@@ -26,6 +28,12 @@ const appReducer = (state = initialState, action) => {
   } = action;
 
   switch (action.type) {
+
+    case FINISH_INITIAL_LOADING:
+      return {
+        ...state,
+        isInitialLoadingDone: true,
+      }
 
     case OPEN_NEW_POST_MENU:
       return {

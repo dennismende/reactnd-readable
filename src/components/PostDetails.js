@@ -18,9 +18,9 @@ class PostDetails extends Component {
   }
 
   render() {
-    const { post, comments } = this.props;
+    const { post, comments, isInitialLoadingDone } = this.props;
 
-    if (!post) {
+    if (isInitialLoadingDone && !post) {
       return <Redirect to='/page-not-found' />;
     }
 
@@ -40,8 +40,9 @@ class PostDetails extends Component {
   }
 }
 
-function mapStateToProps ({ postReducer: { posts }, commentReducer: { comments } }, ownProps) {
+function mapStateToProps ({ postReducer: { posts }, commentReducer: { comments }, appReducer: { isInitialLoadingDone } }, ownProps) {
   return {
+    isInitialLoadingDone,
     comments,
     post: getSelectedPost(posts, ownProps),
   };
