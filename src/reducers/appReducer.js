@@ -7,7 +7,7 @@ import {
   CLOSE_NEW_COMMENT_MENU,
   ACTIVATE_EDIT_MODE_OF_COMMENT,
   DEACTIVATE_EDIT_MODE_OF_COMMENT,
-} from '../actions/appActions';
+} from '../actions/types';
 import concat from 'lodash/concat';
 import without from 'lodash/without';
 

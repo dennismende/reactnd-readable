@@ -7,7 +7,7 @@ import {
   DELETE_POST,
   UP_VOTE_POST,
   DOWN_VOTE_POST,
-} from '../actions/postActions';
+} from '../actions/types';
 import concat from 'lodash/concat';
 
 const initialState = {

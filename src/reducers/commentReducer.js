@@ -5,7 +5,7 @@ import {
   DELETE_COMMENT,
   UP_VOTE_COMMENT,
   DOWN_VOTE_COMMENT,
-} from '../actions/commentActions';
+} from '../actions/types';
 import concat from 'lodash/concat';
 
 const initialState = {

@@ -1,4 +1,7 @@
-export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+import {
+  FETCH_CATEGORIES,
+}
+from './types';
 
 export const fetchCategories = () => {
   return (dispatch, getState, api) => {

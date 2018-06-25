@@ -2,15 +2,17 @@ import {
   closeNewPostMenu,
   deactivateEditModeOfPost,
 } from '../actions/appActions';
-
-export const FETCH_POSTS = 'FETCH_POSTS';
-export const FETCH_POSTS_OF_SELECTED_CATEGORY = 'FETCH_POSTS_OF_SELECTED_CATEGORY';
-export const FETCH_POST = 'FETCH_POST';
-export const CREATE_POST = 'CREATE_POST';
-export const UPDATE_POST = 'UPDATE_POST';
-export const DELETE_POST = 'DELETE_POST';
-export const UP_VOTE_POST = 'UP_VOTE_POST';
-export const DOWN_VOTE_POST = 'DOWN_VOTE_POST';
+import {
+  FETCH_POSTS,
+  FETCH_POSTS_OF_SELECTED_CATEGORY,
+  FETCH_POST,
+  CREATE_POST,
+  UPDATE_POST,
+  DELETE_POST,
+  UP_VOTE_POST,
+  DOWN_VOTE_POST,
+}
+from './types';
 
 export const fetchPosts = () => {
   return (dispatch, getState, api) => {

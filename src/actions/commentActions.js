@@ -3,13 +3,15 @@ import {
   closeNewCommentMenu,
   deactivateEditModeOfComment,
 } from '../actions/appActions';
-
-export const FETCH_COMMENTS_OF_POST = 'FETCH_COMMENTS_OF_POST';
-export const ADD_NEW_COMMENT_TO_POST = 'ADD_NEW_COMMENT_TO_POST';
-export const UPDATE_COMMENT = 'UPDATE_COMMENT';
-export const DELETE_COMMENT = 'DELETE_COMMENT';
-export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT';
-export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT';
+import {
+  FETCH_COMMENTS_OF_POST,
+  ADD_NEW_COMMENT_TO_POST,
+  UPDATE_COMMENT,
+  DELETE_COMMENT,
+  UP_VOTE_COMMENT,
+  DOWN_VOTE_COMMENT,
+}
+from './types';
 
 export const fetchCommentsOfPost = (postId) => {
   return (dispatch, getState, api) => {
