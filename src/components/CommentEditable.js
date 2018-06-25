@@ -6,9 +6,10 @@ import {
   TextArea,
 } from 'semantic-ui-react';
 import noImage from '../images/no-image.png';
-import { addNewCommentToPost as addNewCommentToPostAction } from '../actions/commentActions';
-import { fetchPost as fetchPostAction } from '../actions/postActions';
-import { closeNewCommentMenu as closeNewCommentMenuAction } from '../actions/appActions';
+import {
+  addNewCommentToPost as addNewCommentToPostAction,
+  updateComment as updateCommentAction,
+} from '../actions/commentActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getUUID } from '../utils/helper';
@@ -22,7 +23,10 @@ class CommentEditable extends Component {
     if(comment) {
       this.state = {
         isNewComment: false,
-        comment,
+        comment: {
+          ...comment,
+          timestamp: new Date().getTime(),
+        }
       };
     } else {
       const newComment = this.createNewPost();
@@ -60,10 +64,12 @@ class CommentEditable extends Component {
 
   persistOrUpdateComment = () => {
     const { comment, isNewComment } = this.state;
-    const { addNewCommentToPost, match: { params: { post_id } } } = this.props;
+    const { addNewCommentToPost, updateComment } = this.props;
 
     if(isNewComment) {
       addNewCommentToPost(comment);
+    } else {
+      updateComment(comment);
     }
   }
 
@@ -108,6 +114,7 @@ class CommentEditable extends Component {
 function mapDispatchToProps (dispatch) {
   return {
     addNewCommentToPost: (comment) => dispatch(addNewCommentToPostAction(comment)),
+    updateComment: (comment) => dispatch(updateCommentAction(comment)),
   };
 }
 

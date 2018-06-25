@@ -46,7 +46,19 @@ export const addCommentToPost = (comment) =>
       ...headers,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ comment })
+    body: JSON.stringify(comment)
+  })
+    .then(res => res.json())
+    .then(data => data);
+
+export const updateComment = (comment) =>
+  fetch(`${api}/comments/${comment.id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(comment)
   })
     .then(res => res.json())
     .then(data => data);

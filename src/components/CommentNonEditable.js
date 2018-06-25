@@ -6,12 +6,15 @@ import {
 } from 'semantic-ui-react';
 import noImage from '../images/no-image.png';
 import Moment from 'react-moment';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { activateEditModeOfComment as activateEditModeOfCommentAction } from '../actions/appActions';
 
 class CommentNonEditable extends Component {
   onChangeToEditMode = () => {
-    const { changeMode } = this.props;
+    const { activateEditModeOfComment, comment } = this.props;
 
-    changeMode(true);
+    activateEditModeOfComment(comment.id);
   }
 
   render() {
@@ -48,4 +51,13 @@ class CommentNonEditable extends Component {
   }
 }
 
-export default CommentNonEditable;
+function mapDispatchToProps (dispatch) {
+  return {
+    activateEditModeOfComment: (comment) => dispatch(activateEditModeOfCommentAction(comment)),
+  };
+}
+
+export default withRouter(connect(
+  null,
+  mapDispatchToProps,
+)(CommentNonEditable))

@@ -10,6 +10,7 @@ import Comment from './Comment';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { openNewCommentMenu as openNewCommentMenuAction } from '../actions/appActions';
+import orderBy from 'lodash/orderBy';
 
 class CommentList extends Component {
 
@@ -28,7 +29,7 @@ class CommentList extends Component {
             Comments
           </Header>
 
-          {comments.map(comment => (
+          {orderBy(comments, ['timestamp'], ['desc']).map(comment => (
             <Comment
               key={comment.id}
               comment={comment}
@@ -37,7 +38,7 @@ class CommentList extends Component {
 
           {isNewCommentMenuOpen && (
             <Comment
-              inEditMode={true}
+              isInEditMode={true}
             />
           )}
 

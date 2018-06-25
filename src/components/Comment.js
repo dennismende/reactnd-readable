@@ -4,38 +4,21 @@ import {
 } from 'semantic-ui-react';
 import CommentNonEditable from './CommentNonEditable';
 import CommentEditable from './CommentEditable';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class Comment extends Component {
-  constructor(props) {
-    super(props);
-
-    const { inEditMode } = props;
-
-    this.state = {
-      inEditMode: inEditMode ? inEditMode : false,
-    };
-  }
-
-  changeMode = (inEditMode) => {
-    this.setState(() => ({
-      inEditMode,
-    }));
-  }
-
   render() {
-
-    const { inEditMode } = this.state;
-    const { comment } = this.props;
+    const { comment, isEditModeOfCommentActive, isInEditMode } = this.props;
 
     return (
       <SemanticComment>
-        {inEditMode ? (
+        {isEditModeOfCommentActive || isInEditMode ? (
           <CommentEditable
             comment={comment}
           />
         ) : (
           <CommentNonEditable
-            changeMode={this.changeMode}
             comment={comment}
           />
         )}
@@ -44,4 +27,16 @@ class Comment extends Component {
   }
 }
 
-export default Comment;
+function mapStateToProps ({ appReducer: { commentEditStates } }, ownProps) {
+  const { comment } = ownProps;
+  const isEditModeOfCommentActive = comment ? commentEditStates.includes(comment.id) : false;
+
+  return {
+    isEditModeOfCommentActive,
+  };
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  null,
+)(Comment))

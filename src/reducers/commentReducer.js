@@ -1,6 +1,7 @@
 import {
   FETCH_COMMENTS_OF_POST,
   ADD_NEW_COMMENT_TO_POST,
+  UPDATE_COMMENT,
 } from '../actions/commentActions';
 import concat from 'lodash/concat';
 
@@ -24,6 +25,12 @@ const commentReducer = (state = initialState, action) => {
       return {
         ...state,
         comments: concat(state.comments, comment),
+      }
+
+    case UPDATE_COMMENT:
+      return {
+        ...state,
+        comments: concat(state.comments.filter(currentComment => currentComment.id !== comment.id), comment),
       }
 
     default :
