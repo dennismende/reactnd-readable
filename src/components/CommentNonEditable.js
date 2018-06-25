@@ -9,12 +9,19 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { activateEditModeOfComment as activateEditModeOfCommentAction } from '../actions/appActions';
+import { deleteComment as deleteCommentAction } from '../actions/commentActions';
 
 class CommentNonEditable extends Component {
   onChangeToEditMode = () => {
     const { activateEditModeOfComment, comment } = this.props;
 
     activateEditModeOfComment(comment.id);
+  }
+
+  deleteComment = () => {
+    const { deleteComment, comment } = this.props;
+
+    deleteComment(comment);
   }
 
   render() {
@@ -43,7 +50,7 @@ class CommentNonEditable extends Component {
               </span>
             </Comment.Action>
             <Comment.Action onClick={this.onChangeToEditMode}>Edit</Comment.Action>
-            <Comment.Action>Delete</Comment.Action>
+            <Comment.Action onClick={this.deleteComment}>Delete</Comment.Action>
           </Comment.Actions>
         </Comment.Content>
       </React.Fragment>
@@ -54,6 +61,7 @@ class CommentNonEditable extends Component {
 function mapDispatchToProps (dispatch) {
   return {
     activateEditModeOfComment: (comment) => dispatch(activateEditModeOfCommentAction(comment)),
+    deleteComment: (commentId) => dispatch(deleteCommentAction(commentId)),
   };
 }
 
