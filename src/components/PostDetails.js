@@ -5,7 +5,7 @@ import {
 import Post from './Post';
 import CommentList from './CommentList';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { fetchCommentsOfPost as fetchCommentsOfPostAction } from '../actions/commentActions';
 
 class PostDetails extends Component {
@@ -18,6 +18,10 @@ class PostDetails extends Component {
 
   render() {
     const { post, comments } = this.props;
+
+    if (!post) {
+      return <Redirect to='/page-not-found' />;
+    }
 
     return (
       <div>

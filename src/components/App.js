@@ -7,10 +7,11 @@ import {
 import PostList from './PostList';
 import PostDetails from './PostDetails';
 import CategoryMenu from './CategoryMenu';
+import PageNotAvailable from './PageNotAvailable';
 import { fetchCategories as fetchCategoriesAction } from '../actions/categoryActions';
 import { fetchPosts as fetchPostsAction } from '../actions/postActions';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Switch } from 'react-router-dom';
 class App extends Component {
 
   componentDidMount() {
@@ -37,16 +38,22 @@ class App extends Component {
             <Grid.Column>
             </Grid.Column>
             <Grid.Column width={11}>
-              <Route
-                exact path='/:filter?'
-                render={props => (
-                  <PostList posts={posts} {...props} />
-                )}
-              />
-              <Route
-                path='/:category/:post_id'
-                component={PostDetails}
-              />
+              <Switch>
+                <Route
+                  path='/page-not-found'
+                  component={PageNotAvailable}
+                />
+                <Route
+                  exact path='/:filter?'
+                  render={props => (
+                    <PostList posts={posts} {...props} />
+                  )}
+                />
+                <Route
+                  path='/:category/:post_id'
+                  component={PostDetails}
+                />
+              </Switch>
             </Grid.Column>
           </Grid.Row>
         </Grid>
