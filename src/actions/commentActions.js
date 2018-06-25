@@ -8,6 +8,8 @@ export const FETCH_COMMENTS_OF_POST = 'FETCH_COMMENTS_OF_POST';
 export const ADD_NEW_COMMENT_TO_POST = 'ADD_NEW_COMMENT_TO_POST';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT';
+export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT';
 
 export const fetchCommentsOfPost = (postId) => {
   return (dispatch, getState, api) => {
@@ -70,5 +72,33 @@ export const deleteCommentSuccess = (commentId) => {
   return {
     type: DELETE_COMMENT,
     commentId,
+  };
+}
+
+export const upVoteComment = (commentId) => {
+  return (dispatch, getState, api) => {
+    api.voteForComment(commentId, 'upVote')
+      .then(comment => dispatch(upVoteCommentSuccess(comment)));
+  }
+}
+
+export const upVoteCommentSuccess = (comment) => {
+  return {
+    type: UP_VOTE_COMMENT,
+    comment,
+  };
+}
+
+export const downVoteComment = (commentId) => {
+  return (dispatch, getState, api) => {
+    api.voteForComment(commentId, 'downVote')
+      .then(comment => dispatch(downVoteCommentSuccess(comment)));
+  }
+}
+
+export const downVoteCommentSuccess = (comment) => {
+  return {
+    type: DOWN_VOTE_COMMENT,
+    comment,
   };
 }

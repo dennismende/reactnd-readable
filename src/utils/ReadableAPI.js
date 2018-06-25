@@ -70,3 +70,15 @@ export const deleteComment = (commentId) =>
   })
     .then(res => res.json())
     .then(data => data);
+
+export const voteForComment = (commentId, option) =>
+  fetch(`${api}/comments/${commentId}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({option})
+  })
+    .then(res => res.json())
+    .then(data => data);

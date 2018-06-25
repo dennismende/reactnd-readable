@@ -3,6 +3,8 @@ import {
   ADD_NEW_COMMENT_TO_POST,
   UPDATE_COMMENT,
   DELETE_COMMENT,
+  UP_VOTE_COMMENT,
+  DOWN_VOTE_COMMENT,
 } from '../actions/commentActions';
 import concat from 'lodash/concat';
 
@@ -38,6 +40,18 @@ const commentReducer = (state = initialState, action) => {
       return {
         ...state,
         comments: state.comments.filter(currentComment => currentComment.id !== commentId),
+      }
+
+    case UP_VOTE_COMMENT :
+      return {
+        ...state,
+        comments: concat(state.comments.filter(currentComment => currentComment.id !== comment.id), comment),
+      }
+
+    case DOWN_VOTE_COMMENT :
+      return {
+        ...state,
+        comments: concat(state.comments.filter(currentComment => currentComment.id !== comment.id), comment),
       }
 
     default :

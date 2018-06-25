@@ -9,7 +9,11 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { activateEditModeOfComment as activateEditModeOfCommentAction } from '../actions/appActions';
-import { deleteComment as deleteCommentAction } from '../actions/commentActions';
+import {
+  deleteComment as deleteCommentAction,
+  upVoteComment as upVoteCommentAction,
+  downVoteComment as downVoteCommentAction,
+} from '../actions/commentActions';
 
 class CommentNonEditable extends Component {
   onChangeToEditMode = () => {
@@ -22,6 +26,18 @@ class CommentNonEditable extends Component {
     const { deleteComment, comment } = this.props;
 
     deleteComment(comment);
+  }
+
+  upVote = () => {
+    const { upVoteComment, comment: { id: commentId } } = this.props;
+
+    upVoteComment(commentId);
+  }
+
+  downVote = () => {
+    const { downVoteComment, comment: { id: commentId } } = this.props;
+
+    downVoteComment(commentId);
   }
 
   render() {
@@ -45,8 +61,8 @@ class CommentNonEditable extends Component {
                 </Statistic.Value>
               </Statistic>
               <span>
-                <Icon name='angle up' size='large' />
-                <Icon name='angle down' size='large' />
+                <Icon name='angle up' size='large' onClick={this.upVote} />
+                <Icon name='angle down' size='large' onClick={this.downVote} />
               </span>
             </Comment.Action>
             <Comment.Action onClick={this.onChangeToEditMode}>Edit</Comment.Action>
@@ -62,6 +78,8 @@ function mapDispatchToProps (dispatch) {
   return {
     activateEditModeOfComment: (comment) => dispatch(activateEditModeOfCommentAction(comment)),
     deleteComment: (commentId) => dispatch(deleteCommentAction(commentId)),
+    upVoteComment: (commentId) => dispatch(upVoteCommentAction(commentId)),
+    downVoteComment: (commentId) => dispatch(downVoteCommentAction(commentId)),
   };
 }
 
