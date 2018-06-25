@@ -4,6 +4,7 @@ import {
   FETCH_POST,
   CREATE_POST,
   UPDATE_POST,
+  DELETE_POST,
 } from '../actions/postActions';
 import concat from 'lodash/concat';
 
@@ -13,7 +14,7 @@ const initialState = {
 
 const postReducer = (state = initialState, action) => {
 
-  const { posts, post } = action;
+  const { posts, post, postId } = action;
 
   switch (action.type) {
 
@@ -45,6 +46,12 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: concat(state.posts.filter(currentPost => currentPost.id !== post.id), post),
+      }
+
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter(currentPost => currentPost.id !== postId),
       }
 
     default :

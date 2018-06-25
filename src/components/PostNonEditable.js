@@ -11,19 +11,40 @@ import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import noImage from '../images/no-image.png';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { activateEditModeOfPost as activateEditModeOfPostAction } from '../actions/appActions';
+import {
+  deletePost as deletePostAction,
+} from '../actions/postActions';
 
 class PostNonEditable extends Component {
+  state = {
+    redirectAfterDeleteOfPostAtDetailPage: false,
+  }
+
   onChangeToEditMode = () => {
     const { activateEditModeOfPost, post } = this.props;
 
     activateEditModeOfPost(post.id);
   }
 
+  deletePost = () => {
+    const { deletePost, post } = this.props;
+
+    deletePost(post);
+    this.setState({
+      redirectAfterDeleteOfPostAtDetailPage: true,
+    })
+  }
+
   render() {
+    const { redirectAfterDeleteOfPostAtDetailPage } = this.state;
     const { post } = this.props;
     const detailRoute = `/${post.category}/${post.id}`;
+
+    if (redirectAfterDeleteOfPostAtDetailPage) {
+      return <Redirect to='/' />;
+    }
 
     return (
       <Item className='post'>
@@ -45,7 +66,7 @@ class PostNonEditable extends Component {
                 <Dropdown icon='ellipsis horizontal'>
                   <Dropdown.Menu>
                     <Dropdown.Item onClick={this.onChangeToEditMode}>edit post</Dropdown.Item>
-                    <Dropdown.Item>delete post</Dropdown.Item>
+                    <Dropdown.Item onClick={this.deletePost}>delete post</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Grid.Column>
@@ -94,6 +115,7 @@ class PostNonEditable extends Component {
 function mapDispatchToProps (dispatch) {
   return {
     activateEditModeOfPost: (post) => dispatch(activateEditModeOfPostAction(post)),
+    deletePost: (postId) => dispatch(deletePostAction(postId)),
   };
 }
 

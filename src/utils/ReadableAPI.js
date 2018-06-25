@@ -58,6 +58,14 @@ export const updatePost = (post) =>
     .then(res => res.json())
     .then(data => data);
 
+export const deletePost = (postId) =>
+  fetch(`${api}/posts/${postId}`, {
+    method: 'DELETE',
+    headers,
+  })
+    .then(res => res.json())
+    .then(data => data);
+
 
 // Comments
 export const getCommentsOfPost = (postId) =>

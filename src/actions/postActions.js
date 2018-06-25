@@ -8,6 +8,7 @@ export const FETCH_POSTS_OF_SELECTED_CATEGORY = 'FETCH_POSTS_OF_SELECTED_CATEGOR
 export const FETCH_POST = 'FETCH_POST';
 export const CREATE_POST = 'CREATE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
+export const DELETE_POST = 'DELETE_POST';
 
 export const fetchPosts = () => {
   return (dispatch, getState, api) => {
@@ -80,5 +81,21 @@ const updatePostSuccess = (post) => {
   return {
     type: UPDATE_POST,
     post,
+  };
+}
+
+export const deletePost = (post) => {
+  const { id: postId} = post;
+
+  return (dispatch, getState, api) => {
+    api.deletePost(postId)
+      .then(() => dispatch(deletePostSuccess(postId)));
+  }
+}
+
+const deletePostSuccess = (postId) => {
+  return {
+    type: DELETE_POST,
+    postId,
   };
 }
