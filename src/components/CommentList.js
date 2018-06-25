@@ -7,21 +7,19 @@ import {
   Icon,
 } from 'semantic-ui-react';
 import Comment from './Comment';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { openNewCommentMenu as openNewCommentMenuAction } from '../actions/appActions';
 
 class CommentList extends Component {
-  state = {
-    inAddingMode: false,
-  }
 
-  showAddNewComment = (inAddingMode) => {
-    this.setState(() => ({
-      inAddingMode,
-    }));
+  showAddNewComment = () => {
+    const { openNewCommentMenu } = this.props;
+    openNewCommentMenu();
   }
 
   render() {
-    const { inAddingMode } = this.state;
-    const { comments } = this.props;
+    const { comments, isNewCommentMenuOpen } = this.props;
 
     return (
       <React.Fragment>
@@ -37,13 +35,13 @@ class CommentList extends Component {
             />
           ))}
 
-          {inAddingMode && (
+          {isNewCommentMenuOpen && (
             <Comment
               inEditMode={true}
             />
           )}
 
-          {!inAddingMode && (
+          {!isNewCommentMenuOpen && (
             <Container textAlign='center'>
               <Button circular icon primary onClick={this.showAddNewComment}>
                 <Icon name='add' />
@@ -56,4 +54,19 @@ class CommentList extends Component {
   }
 }
 
-export default CommentList;
+function mapStateToProps ({ appReducer: { isNewCommentMenuOpen } }) {
+  return {
+    isNewCommentMenuOpen,
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    openNewCommentMenu: () => dispatch(openNewCommentMenuAction()),
+  };
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CommentList))

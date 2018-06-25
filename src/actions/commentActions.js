@@ -1,3 +1,6 @@
+import { fetchPost } from '../actions/postActions';
+import { closeNewCommentMenu } from '../actions/appActions';
+
 export const FETCH_COMMENTS_OF_POST = 'FETCH_COMMENTS_OF_POST';
 export const ADD_NEW_COMMENT_TO_POST = 'ADD_NEW_COMMENT_TO_POST';
 
@@ -28,8 +31,10 @@ export const addNewCommentToPost = (comment) => {
           parentDeleted,
         }
 
-        dispatch(addNewCommentToPostSuccess(newComment));
-      });
+        return dispatch(addNewCommentToPostSuccess(newComment))
+      })
+      .then(() => dispatch(fetchPost(comment.parentId)))
+      .then(() => dispatch(closeNewCommentMenu()));
   }
 }
 
