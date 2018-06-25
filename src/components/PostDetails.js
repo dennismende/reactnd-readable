@@ -7,6 +7,7 @@ import CommentList from './CommentList';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import { fetchCommentsOfPost as fetchCommentsOfPostAction } from '../actions/commentActions';
+import getSelectedPost from '../selectors/postSelectors';
 
 class PostDetails extends Component {
 
@@ -40,11 +41,9 @@ class PostDetails extends Component {
 }
 
 function mapStateToProps ({ postReducer: { posts }, commentReducer: { comments } }, ownProps) {
-  const { post_id } = ownProps.match.params;
-
   return {
     comments,
-    post: posts.find(post => post.id === post_id),
+    post: getSelectedPost(posts, ownProps),
   };
 }
 
