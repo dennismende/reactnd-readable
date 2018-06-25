@@ -5,6 +5,8 @@ import {
   CREATE_POST,
   UPDATE_POST,
   DELETE_POST,
+  UP_VOTE_POST,
+  DOWN_VOTE_POST,
 } from '../actions/postActions';
 import concat from 'lodash/concat';
 
@@ -52,6 +54,18 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: state.posts.filter(currentPost => currentPost.id !== postId),
+      }
+
+    case UP_VOTE_POST:
+      return {
+        ...state,
+        posts: concat(state.posts.filter(currentPost => currentPost.id !== post.id), post),
+      }
+
+    case DOWN_VOTE_POST:
+      return {
+        ...state,
+        posts: concat(state.posts.filter(currentPost => currentPost.id !== post.id), post),
       }
 
     default :

@@ -15,6 +15,8 @@ import { withRouter, Redirect } from 'react-router-dom';
 import { activateEditModeOfPost as activateEditModeOfPostAction } from '../actions/appActions';
 import {
   deletePost as deletePostAction,
+  upVotePost as upVotePostAction,
+  downVotePost as downVotePostAction,
 } from '../actions/postActions';
 
 class PostNonEditable extends Component {
@@ -35,6 +37,18 @@ class PostNonEditable extends Component {
     this.setState({
       redirectAfterDeleteOfPostAtDetailPage: true,
     })
+  }
+
+  upVote = () => {
+    const { upVotePost, post: { id: postId } } = this.props;
+
+    upVotePost(postId);
+  }
+
+  downVote = () => {
+    const { downVotePost, post: { id: postId } } = this.props;
+
+    downVotePost(postId);
   }
 
   render() {
@@ -91,8 +105,8 @@ class PostNonEditable extends Component {
                     </Statistic.Value>
                   </Statistic>
                   <span>
-                    <Icon name='angle up' size='large' />
-                    <Icon name='angle down' size='large' />
+                    <Icon name='angle up' size='large' onClick={this.upVote} />
+                    <Icon name='angle down' size='large' onClick={this.downVote} />
                   </span>
                 </Grid.Column>
                 <Grid.Column width={11} textAlign='right'>
@@ -116,6 +130,8 @@ function mapDispatchToProps (dispatch) {
   return {
     activateEditModeOfPost: (post) => dispatch(activateEditModeOfPostAction(post)),
     deletePost: (postId) => dispatch(deletePostAction(postId)),
+    upVotePost: (postId) => dispatch(upVotePostAction(postId)),
+    downVotePost: (postId) => dispatch(downVotePostAction(postId)),
   };
 }
 

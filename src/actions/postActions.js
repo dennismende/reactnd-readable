@@ -9,6 +9,8 @@ export const FETCH_POST = 'FETCH_POST';
 export const CREATE_POST = 'CREATE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const DELETE_POST = 'DELETE_POST';
+export const UP_VOTE_POST = 'UP_VOTE_POST';
+export const DOWN_VOTE_POST = 'DOWN_VOTE_POST';
 
 export const fetchPosts = () => {
   return (dispatch, getState, api) => {
@@ -97,5 +99,33 @@ const deletePostSuccess = (postId) => {
   return {
     type: DELETE_POST,
     postId,
+  };
+}
+
+export const upVotePost = (postId) => {
+  return (dispatch, getState, api) => {
+    api.voteForPost(postId, 'upVote')
+      .then(post => dispatch(upVotePostSuccess(post)));
+  }
+}
+
+export const upVotePostSuccess = (post) => {
+  return {
+    type: UP_VOTE_POST,
+    post,
+  };
+}
+
+export const downVotePost = (postId) => {
+  return (dispatch, getState, api) => {
+    api.voteForPost(postId, 'downVote')
+      .then(post => dispatch(downVotePostSuccess(post)));
+  }
+}
+
+export const downVotePostSuccess = (post) => {
+  return {
+    type: DOWN_VOTE_POST,
+    post,
   };
 }
